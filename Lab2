@@ -1,0 +1,48 @@
+# You tell Python that you want to use a library with the import statement.
+import requests
+
+
+# Get the HU Wikipedia page
+req = requests.get("https://en.wikipedia.org/wiki/Harvard_University")
+req
+type(req)
+
+# dir can be used to list all properties of an object
+dir(req)
+
+page = req.text
+page
+
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(page, 'html.parser')
+soup
+
+type(page)
+type(soup)
+
+print soup.prettify()
+
+soup.title
+"title" in dir(soup)
+
+soup.p
+len(soup.find_all("p"))
+
+soup.table["class"]
+
+[t["class"] for t in soup.find_all("table") if t.get("class")]
+
+my_list = []
+for t in soup.find_all("table"):
+    if t.get("class"):
+        my_list.append(t["class"])
+my_list
+
+table_html = str(soup.find("table", "wikitable"))
+from IPython.core.display import HTML
+HTML(table_html)
+
+aa = soup.find_all("table", "wikitable")
+rows = [row for row in aa[2].find_all("tr")]
+rows
