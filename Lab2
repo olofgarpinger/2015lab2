@@ -46,3 +46,58 @@ HTML(table_html)
 aa = soup.find_all("table", "wikitable")
 rows = [row for row in aa[2].find_all("tr")]
 rows
+
+rem_nl = lambda s: s.replace("\n", " ")
+
+def power(x, y):
+    return x**y
+power(2, 3)
+
+
+
+def print_greeting():
+    print "Hello!"
+
+print_greeting()
+
+def get_multiple(x, y = 1):
+    return x*y
+print "With x and y: ", get_multiple(10, 2)
+print "With x only: ", get_multiple(10, 1)
+
+def print_special_greeting(name, leaving = False, condition = "nice"):
+    print "Hi", name
+    print "How are you doing in this", condition, "day?"
+    if leaving:
+        print "Please come back!"
+
+print_special_greeting("John")
+print_special_greeting("John", True)
+print_special_greeting("John", True, "rainy")
+print_special_greeting("John", condition = "horrible")
+
+def print_siblings(name, *siblings):
+    print name, "has the following siblings:"
+    for sibling in siblings:
+        print sibling
+    print
+
+print_siblings("John", "Ashley", "Lauren", "Arthur")
+
+def print_brothers_sisters(name, **siblings):
+    print name, "has the following siblings:"
+    for sibling in siblings:
+        print sibling, ":", siblings[sibling]
+    print
+
+print_brothers_sisters("John", Ashley="sister", Lauren="sister", Arthur="brother")
+
+
+
+
+
+
+
+
+
+
