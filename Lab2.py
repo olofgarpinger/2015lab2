@@ -140,3 +140,54 @@ stacked_by_col
 data_lists = {col: val for col, val in zip(columns, stacked_by_col)}
 data_lists
 pd.DataFrame(data_lists, index = indexes)
+
+df.dtypes
+
+df.dropna()
+
+df.dropna(axis=1)
+
+df_clean = df.fillna(0).astype(int)
+df_clean
+df_clean.dtypes
+
+df_clean.describe()
+
+import numpy as np
+
+df_clean.values
+type(df_clean.values)
+
+np.mean(df_clean['Undergraduate'])
+np.std(df_clean)
+np.median(df_clean)
+
+df_clean["Undergraduate"]
+df_clean.Undergraduate
+
+df_clean.loc["Asian/Pacific Islander"]
+df_clean.iloc[0]
+df_clean.ix["Asian/Pacific Islander"]
+
+df_clean.loc["White/non-Hispanic", "Graduate and professional"]
+df_clean.iloc[3, 1]
+df_clean.ix[3, "Graduate and professional"]
+
+df_flat = df_clean.stack().reset_index()
+df_flat.columns = ["race", "source", "percentage"]
+df_flat
+
+grouped = df_flat.groupby("race")
+grouped.groups
+
+type(grouped)
+
+mean_percs = grouped.mean()
+mean_percs
+type(mean_percs)
+
+for name, group in df_flat.groupby("source", sort = True):
+    print name
+    print group
+
+mean_percs.plot(kind="bar")
